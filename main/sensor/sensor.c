@@ -1,5 +1,5 @@
 #include "sensor.h"
-#include "bmp280.h"
+#include <bmp280.h>
 
-void sensor_init(void)
-{}
+void sensor_start(void)
+{   }
