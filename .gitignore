@@ -53,3 +53,12 @@ dkms.conf
 
 # debug information files
 *.dwo
+
+# workspace specific files
+build/
+.cache/
+sdkconfig
+sdkconfig.old
+main/wifi/wifi.c
+wifi.c
+

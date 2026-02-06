@@ -1,0 +1,9 @@
+idf_component_register(SRCS 
+                    "humytemp.c"
+                    "wifi/wifi.c"
+                    "sensor/sensor.c"
+                    INCLUDE_DIRS 
+                    "."
+                    "wifi"
+                    "sensor"
+                    )
