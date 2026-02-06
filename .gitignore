@@ -61,4 +61,5 @@ sdkconfig
 sdkconfig.old
 main/wifi/wifi.c
 wifi.c
+managed_components/
 
