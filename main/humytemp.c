@@ -11,6 +11,9 @@
 #include "i2cdev.h"
 #include "aht.h"
 
+
+#include "wifi/wifi.h"
+
 #define I2C_PORT I2C_NUM_0
 #define I2C_SDA  21
 #define I2C_SCL  22
@@ -25,7 +28,8 @@ typedef struct {
 } aht_sample_t;
 
 static QueueHandle_t s_aht_q;
-static aht_t s_aht;   // global, damit beide Tasks Zugriff haben
+static aht_t s_aht;
+
 
 static void i2c_init(void)
 {
@@ -50,6 +54,12 @@ static void aht_read_task(void *arg)
     }
 }
 
+static void bt_scan_task(void *arg)
+{
+    
+}
+
+
 static void aht_log_task(void *arg)
 {
     (void)arg;
@@ -69,6 +79,7 @@ static void aht_log_task(void *arg)
 void app_main(void)
 {
     i2c_init();
+    wifi_init_sta();
 
     // AHT init (wie bei dir)
     s_aht = (aht_t){0};
@@ -84,6 +95,7 @@ void app_main(void)
     // 2 Tasks starten
     xTaskCreate(aht_read_task, "aht_read", 4096, NULL, 5, NULL);
     xTaskCreate(aht_log_task,  "aht_log",  4096, NULL, 4, NULL);
+    
 
     // app_main kann zurückkehren (Tasks laufen weiter)
 }
